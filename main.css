@@ -1,0 +1,186 @@
+@font-face {
+  font-family: Poppins, sans-serif;
+  src: url('./assets/fonts/Poppins-Italic.ttf') format(truetype);
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Poppins, sans-serif;
+  src: url('./assets/fonts/Poppins-bold.ttf') format(truetype);
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: Poppins, sans-serif;
+  src: url('./assets/fonts/Poppins-ExtraBoldItalic.ttf') format(truetype);
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Poppins, sans-serif;
+  src: url('./assets/fonts/Poppins-ExtraBold.ttf') format(truetype);
+  font-weight: 900;
+  font-style: italic;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* neutral */
+  --White: hsl(0, 0%, 100%);
+  --Off-black: hsl(0, 0%, 8%);
+  --Off-white: hsl(0, 0%, 94%);
+  --Light-grey: hsl(0, 0%, 86%);
+  --Smokey-grey: hsl(0, 1%, 44%);
+
+  /* primary */
+  --Purple: hsl(259, 100%, 65%);
+  --Light-red: hsl(0, 100%, 67%);
+
+  /* fw */
+  --fw-400: 400;
+  --fw-700: 700;
+  --fw-800: 800;
+
+  font-family: Poppins, sans-serif;
+}
+
+label {
+  color: var(--Smokey-grey);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.75rem;
+  font-weight: var(--fw-700);
+
+  &.invalid {
+    color: var(--Light-red);
+  }
+}
+
+input {
+  color: var(--Off-black);
+  border: 1px solid var(--Light-grey);
+  border-radius: 0.3rem;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: var(--fw-700);
+  margin-top: 0.3rem;
+  padding: 0.5rem;
+  max-width: 100%;
+  display: block;
+  cursor: pointer;
+
+  &::placeholder {
+    color: var(--Smokey-grey);
+  }
+
+  &:hover,
+  &:focus-visible {
+    outline: none;
+    border: 1px solid var(--Purple);
+  }
+
+  &.invalid {
+    border: 1px solid var(--Light-red);
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+main {
+  background: var(--Off-white);
+  padding: 5em 1em 0;
+  min-height: 100vh;
+}
+
+.d-none {
+  display: none;
+}
+
+.age-card {
+  border-radius: 1em 1em 5em 1em;
+  background: var(--White);
+  margin-inline: auto;
+  padding: 2em 1em 3em;
+  min-width: 21em;
+  max-width: 30em;
+
+  @media (min-width: 40em) {
+    padding: 1.5em 2em 3em;
+  }
+}
+
+.age-form {
+  border-bottom: 1px solid var(--Light-grey);
+}
+
+.age-input {
+  gap: 1em;
+  display: flex;
+}
+
+.form-control {
+  max-width: 5.5rem;
+
+  & > span {
+    color: var(--Light-red);
+    font-size: 0.5rem;
+    font-style: italic;
+    font-weight: var(--fw-700);
+    max-width: 100%;
+  }
+}
+
+.btn-primary {
+  background: var(--Purple);
+  border: none;
+  border-radius: 100%;
+  margin-inline: auto;
+  padding: 1em;
+  display: block;
+  translate: 0 50%;
+  cursor: pointer;
+
+  & > img {
+    max-width: 2em;
+  }
+
+  @media (min-width: 40em) {
+    margin: 0 0 0 100%;
+    translate: -100% 50%;
+  }
+}
+
+.age-display {
+  margin-top: 3em;
+}
+
+.years,
+.months,
+.days {
+  color: var(--Off-black);
+  font-size: 2rem;
+  font-weight: 900;
+  font-style: italic;
+  line-height: 1;
+  margin-top: 0.25rem;
+
+  & > span {
+    color: var(--Purple);
+    letter-spacing: 5px;
+  }
+
+  @media (min-width: 40em) {
+    font-size: 3rem;
+  }
+}

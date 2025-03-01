@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Frontend Mentor | Age Calculator App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="./assets/images/favicon.png" />
+    <link rel="stylesheet" href="./main.css" />
+    <script src="./main.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <section class="age-card">
+        <form class="age-form">
+          <div class="age-input">
+            <div class="form-control">
+              <label class="label day" for="day">day</label>
+              <input id="day" type="number" name="day" placeholder="DD" />
+              <span class="day-validation d-none">Must be a valid date</span>
+              <span class="day-validation-empty d-none"
+                >This field is required</span
+              >
+            </div>
+            <div class="form-control">
+              <label class="label month" for="month">month</label>
+              <input id="month" type="number" name="month" placeholder="MM" />
+              <span class="month-validation d-none">Must be a valid month</span>
+              <span class="month-validation-empty d-none"
+                >This field is required</span
+              >
+            </div>
+            <div class="form-control">
+              <label class="label year" for="year">year</label>
+              <input id="year" type="number" name="year" placeholder="YYYY" />
+              <span class="year-validation d-none">Must be in the past</span>
+              <span class="year-validation-empty d-none"
+                >This field is required</span
+              >
+            </div>
+          </div>
+          <button class="btn-primary" type="submit" title="Submit">
+            <img src="./assets/images/icon-arrow.svg" alt="Arrow Icon" />
+          </button>
+        </form>
+        <section class="age-display">
+          <h1 class="years"><span>--</span> years</h1>
+          <h1 class="months"><span>--</span> months</h1>
+          <h1 class="days"><span>--</span> days</h1>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
