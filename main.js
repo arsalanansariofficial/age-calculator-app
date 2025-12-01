@@ -19,11 +19,14 @@ const validationMonthEmpty = document.querySelector('.month-validation-empty');
 const validationYear = document.querySelector('.year-validation');
 const validationYearEmpty = document.querySelector('.year-validation-empty');
 
+const dobValidation = document.querySelector('.dob-validation');
+
 const form = document.querySelector('.age-form');
 
 function updateInput(label, input, validationOne, validationTwo, maxLength) {
   label.classList.remove('invalid');
   input.classList.remove('invalid');
+  dobValidation.classList.add('d-none');
   validationOne.classList.add('d-none');
   if (input.value.length > maxLength)
     input.value = input.value.slice(0, maxLength);
@@ -31,29 +34,34 @@ function updateInput(label, input, validationOne, validationTwo, maxLength) {
 }
 
 function calculateAge(birthDate) {
-  let ageInYears, ageInMonths, ageInDays;
   const today = new Date();
-  ageInYears = today.getFullYear() - birthDate.getFullYear();
-  monthDifference = today.getMonth() - birthDate.getMonth();
-  dayDifference = today.getDate() - birthDate.getDate();
 
-  if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0))
+  let dayDifference = today.getDate() - birthDate.getDate();
+  let monthDifference = today.getMonth() - birthDate.getMonth();
+  let ageInYears = today.getFullYear() - birthDate.getFullYear();
+
+  if (monthDifference < 0 || (!monthDifference && dayDifference < 0)) {
     ageInYears--;
-  if (monthDifference < 0) monthDifference += 12;
-  if (dayDifference < 0) {
-    const lastDayOfMonth = new Date(
-      birthDate.getFullYear(),
-      birthDate.getMonth() + 1,
-      0
-    ).getDate();
-    dayDifference += lastDayOfMonth;
-    monthDifference--;
   }
 
-  ageInMonths = monthDifference;
-  ageInDays = dayDifference;
+  if (monthDifference < 0) monthDifference += 12;
 
-  return { ageInYears, ageInMonths, ageInDays };
+  if (dayDifference < 0) {
+    monthDifference--;
+
+    dayDifference += new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      0
+    ).getDate();
+
+    if (monthDifference < 0) {
+      ageInYears--;
+      monthDifference += 12;
+    }
+  }
+
+  return { ageInYears, ageInMonths: monthDifference, ageInDays: dayDifference };
 }
 
 inputDay.addEventListener(
@@ -95,6 +103,7 @@ inputYear.addEventListener(
 form.addEventListener('submit', function (event) {
   event.preventDefault();
   let invalid = false;
+  let dob = new Date(inputYear.value, inputMonth.value - 1, inputDay.value);
 
   if (!inputDay.value) {
     labelDay.classList.add('invalid');
@@ -144,11 +153,14 @@ form.addEventListener('submit', function (event) {
     invalid = true;
   }
 
+  if (dob >= new Date().getFullYear()) {
+    dobValidation.classList.remove('d-none');
+    invalid = true;
+  }
+
   if (invalid) return;
 
-  const dob = new Date(
-    `${inputYear.value}-${inputMonth.value}-${inputDay.value}`
-  );
+  dob = new Date(`${inputYear.value}-${inputMonth.value}-${inputDay.value}`);
   dob.setHours(0);
   dob.setMinutes(0);
   dob.setSeconds(0);
