@@ -113,7 +113,7 @@ form.addEventListener('submit', function (event) {
     invalid = true;
   }
 
-  if (inputDay.value > 31) {
+  if (inputDay.value > 31 || inputDay.value < 0) {
     labelDay.classList.add('invalid');
     inputDay.classList.add('invalid');
     validationDay.classList.remove('d-none');
@@ -129,7 +129,7 @@ form.addEventListener('submit', function (event) {
     invalid = true;
   }
 
-  if (inputMonth.value > 12) {
+  if (inputMonth.value > 12 || inputMonth.value < 0) {
     labelMonth.classList.add('invalid');
     inputMonth.classList.add('invalid');
     validationMonth.classList.remove('d-none');
@@ -145,7 +145,7 @@ form.addEventListener('submit', function (event) {
     invalid = true;
   }
 
-  if (inputYear.value > new Date().getFullYear()) {
+  if (inputYear.value > new Date().getFullYear() || inputYear.value < 0) {
     labelYear.classList.add('invalid');
     inputYear.classList.add('invalid');
     validationYear.classList.remove('d-none');
@@ -153,18 +153,21 @@ form.addEventListener('submit', function (event) {
     invalid = true;
   }
 
-  if (dob >= new Date().getFullYear()) {
+  if (dob >= new Date()) {
     dobValidation.classList.remove('d-none');
     invalid = true;
   }
 
   if (invalid) return;
 
-  dob = new Date(`${inputYear.value}-${inputMonth.value}-${inputDay.value}`);
+  dob = new Date();
   dob.setHours(0);
   dob.setMinutes(0);
   dob.setSeconds(0);
   dob.setMilliseconds(0);
+  dob.setDate(inputDay.value);
+  dob.setFullYear(inputYear.value);
+  dob.setMonth(inputMonth.value - 1);
 
   const age = calculateAge(dob);
   displayDay.textContent = age.ageInDays;
