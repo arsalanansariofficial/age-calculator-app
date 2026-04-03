@@ -104,7 +104,7 @@ main {
 }
 
 .d-none {
-  display: none;
+  display: none !important;
 }
 
 .age-card {
@@ -131,13 +131,21 @@ main {
 
 .form-control {
   max-width: 5.5rem;
+}
 
-  & > span {
+.age-form {
+  span {
     color: var(--Light-red);
     font-size: 0.5rem;
     font-style: italic;
     font-weight: var(--fw-700);
     max-width: 100%;
+  }
+
+  & > span {
+    font-size: 1rem;
+    translate: 0 3em;
+    display: inline-block;
   }
 }
 
