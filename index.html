@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="assets/images/favicon.png" />
     <link rel="stylesheet" href="main.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/@date-fns/cdn@4.4.0/cdn.min.js"
+      defer></script>
     <script src="main.js" defer></script>
   </head>
   <body>
@@ -21,8 +24,7 @@
                 max="31"
                 name="day"
                 type="number"
-                placeholder="DD"
-              />
+                placeholder="DD" />
               <span class="day-validation d-none">Must be a valid date</span>
               <span class="day-validation-empty d-none">
                 This field is required
@@ -36,8 +38,7 @@
                 id="month"
                 name="month"
                 type="number"
-                placeholder="MM"
-              />
+                placeholder="MM" />
               <span class="month-validation d-none">Must be a valid month</span>
               <span class="month-validation-empty d-none">
                 This field is required
@@ -50,8 +51,7 @@
                 id="year"
                 name="year"
                 type="number"
-                placeholder="YYYY"
-              />
+                placeholder="YYYY" />
               <span class="year-validation d-none">Must be in the past</span>
               <span class="year-validation-empty d-none">
                 This field is required
